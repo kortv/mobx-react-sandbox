@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function UserData({ handleClick, user }) {
-  const imgSrc = `images/${user.image}.svg`;
+const UserData = ({ handleClick, user }) => {
+  const imgSrc = user.image ? `images/${user.image}.svg` : '';
   return (
     <tr onClick={handleClick} data-id={user.id}>
       <td data-id={user.id}><img src={imgSrc} /></td>
@@ -11,3 +11,4 @@ export default function UserData({ handleClick, user }) {
     </tr>
   );
 }
+export default UserData;

@@ -1,7 +1,9 @@
 import React from 'react';
+import {observer} from 'mobx-react';
 
-export default function ({ user }) {
-  const imgSrc = `images/${user.image}.svg`;
+
+const ActiveUser = observer(({ user }) => {
+  const imgSrc = user.image ? `images/${user.image}.svg` : '';
   return (
     <div className='col-sm-4'>
       <div className='act-usr'>
@@ -31,4 +33,5 @@ export default function ({ user }) {
       </div>
     </div>
   );
-}
+})
+export default ActiveUser;

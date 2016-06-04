@@ -1,7 +1,8 @@
 import React from 'react';
 import UserData from './UserData';
+import {observer} from 'mobx-react';
 
-export default function UserList({ handleClick, users }) {
+const UserList = observer(({ handleClick, users }) => {
   const usersList = users.map((userData, key) => (
     <UserData user={userData} key={key} handleClick={handleClick} />
   ));
@@ -23,4 +24,6 @@ export default function UserList({ handleClick, users }) {
       </div>
     </div>
   );
-}
+})
+
+export default UserList;
