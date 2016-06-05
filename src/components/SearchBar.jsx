@@ -1,6 +1,7 @@
 import React from 'react';
+import {observer} from 'mobx-react';
 
-export default function ({ handleChange }) {
+const SearchBar = observer(({ handleChange }) => {
   return (
     <div className='input-group col-xs-12'>
       <input onChange={handleChange} type='text'
@@ -9,4 +10,5 @@ export default function ({ handleChange }) {
       />
     </div>
   );
-}
+})
+export default SearchBar;
