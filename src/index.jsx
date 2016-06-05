@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {observable, transaction} from 'mobx';
-import Timer from './Timer';
-import TimeReset from './TimeReset';
+import {observable, action} from 'mobx';
 import App from './App';
 import axios from 'axios';
 
@@ -15,17 +13,15 @@ const appState =  new class AppState {
   @observable timer = 0;
 
   constructor() {
-    this.resetTimer = TimeReset.bind(this);
   }
-  loadUsersData = () => {
+  @action loadUsersData = () => {
     axios.get('/data.json')
-         .then(data => {
-           transaction(() => {
+         .then(action(data => {
              this.usersData = data.data;
              this.foundUsersData = data.data;
              this.curUser = data.data[0];
            })
-         })
+         )
        .catch((response) => {
          console.log('get data error');
          console.log(response);
@@ -40,7 +36,7 @@ const appState =  new class AppState {
       this.curUser = current;
       this.curUserId = id;
   }
-  sortNames = (e) => {
+  @action sortNames = (e) => {
     const kind = e.target.getAttribute('data-kind');
     const way = this.nameWay ? 1 : -1;
     const compareFunByName = (a, b) => {
